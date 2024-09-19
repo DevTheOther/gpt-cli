@@ -179,6 +179,12 @@ def main():
     if config.openai_base_url:
         openai.base_url = config.openai_base_url
 
+    if config.azure:
+        openai.azure = config.azure
+    
+    if config.azure_api_version:
+        openai.azure_api_version = config.azure_api_version
+
     if config.api_key:
         openai.api_key = config.api_key
     elif config.openai_api_key:

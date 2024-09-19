@@ -1,7 +1,7 @@
 import re
 from typing import Iterator, List, Optional, cast
 import openai
-from openai import OpenAI
+from openai import OpenAI, AzureOpenAI
 from openai.types.chat import ChatCompletionMessageParam
 
 from gptcli.completion import (
@@ -18,7 +18,10 @@ from gptcli.completion import (
 
 class OpenAICompletionProvider(CompletionProvider):
     def __init__(self):
-        self.client = OpenAI(api_key=openai.api_key, base_url=openai.base_url)
+        if openai.azure == "true":
+            self.client = openai.AzureOpenAI(azure_endpoint=openai.base_url,api_version=openai.azure_api_version,api_key=openai.api_key)
+        else:
+            self.client = OpenAI(api_key=openai.api_key, base_url=openai.base_url)
 
     def complete(
         self, messages: List[Message], args: dict, stream: bool = False

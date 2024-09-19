@@ -29,6 +29,8 @@ class GptCliConfig:
     assistants: Dict[str, AssistantConfig] = {}
     interactive: Optional[bool] = None
     llama_models: Optional[Dict[str, LLaMAModelConfig]] = None
+    azure_api_version: Optional[str] = "2023-03-15-preview"
+    azure: Optional[str] = "false"
 
 
 def choose_config_file(paths: List[str]) -> str:
