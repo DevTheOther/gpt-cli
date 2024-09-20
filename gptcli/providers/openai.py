@@ -19,7 +19,7 @@ from gptcli.completion import (
 class OpenAICompletionProvider(CompletionProvider):
     def __init__(self):
         if openai.azure == "true":
-            self.client = openai.AzureOpenAI(azure_endpoint=openai.base_url,api_version=openai.azure_api_version,api_key=openai.api_key)
+            self.client = AzureOpenAI(azure_endpoint=openai.base_url,api_version=openai.azure_api_version,api_key=openai.api_key)
         else:
             self.client = OpenAI(api_key=openai.api_key, base_url=openai.base_url)
 
